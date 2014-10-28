@@ -12,12 +12,24 @@ var Page = extend(ControlCollection, {
    * @param options
    */
   construct: function(options) {
+    var self          = this;
     this.el           = options.el;
     this.config       = options.config;
     this.model        = options.model;
     this.url          = options.url;
     this.title        = options.title;
+    this.view         = options.view;
     ControlCollection.call(this, {name: options.name});
+
+    //bind events
+    this.view.on('submit', function() {
+      self.emit('navigate', 'next');
+    });
+
+    this.view.on('back', function() {
+      self.emit('navigate', 'previous');
+    });
+
   },
 
   /**
@@ -37,22 +49,22 @@ var Page = extend(ControlCollection, {
   },
 
   /**
-   * Hide the page
-   * @returns {Page}
-   */
-  hide: function() {
-    this.view.setVisible(false);
-    this.emit('hidden');
-    return this;
-  },
-
-  /**
    * Show the page
    * @returns {Page}
    */
   show: function() {
     this.view.setVisible(true);
     this.emit('shown');
+    return this;
+  },
+
+  /**
+   * Hide the page
+   * @returns {Page}
+   */
+  hide: function() {
+    this.view.setVisible(false);
+    this.emit('hidden');
     return this;
   }
 
