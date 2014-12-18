@@ -53,7 +53,17 @@ var Page = extend(ControlCollection, {
    * @returns {Page}
    */
   show: function() {
+
+    //make the page visible
     this.view.setVisible(true);
+
+    //scroll to the page
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var pageTop   = this.el.offsetTop;
+    if (scrollTop > pageTop) {
+      window.scrollTo(0, pageTop);
+    }
+
     this.emit('shown');
     return this;
   },
