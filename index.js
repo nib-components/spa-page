@@ -57,12 +57,8 @@ var Page = extend(ControlCollection, {
     //make the page visible
     this.view.setVisible(true);
 
-    //scroll to the page
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    var pageTop   = this.el.offsetTop;
-    if (scrollTop > pageTop) {
-      window.scrollTo(0, pageTop);
-    }
+    //always scroll to the top of the page
+    window.scrollTo(0, 0);
 
     this.emit('shown');
     return this;
