@@ -18,6 +18,7 @@ var Page = extend(ControlCollection, {
     this.model        = options.model;
     this.url          = options.url;
     this.title        = options.title;
+    this.shortTitle   = options.shortTitle;
     this.view         = options.view;
     ControlCollection.call(this, {name: options.name});
 
@@ -46,6 +47,14 @@ var Page = extend(ControlCollection, {
    */
   getTitle: function() {
     return this.title;
+  },
+  
+  /**
+   * Get the page short title
+   * @returns {String}
+   */
+  getShortTitle: function() {
+    return this.shortTitle;
   },
 
   /**
